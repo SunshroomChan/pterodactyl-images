@@ -51,7 +51,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.USER_TOKEN }}
 
       - name: Build and push image
         uses: docker/build-push-action@v6
@@ -60,4 +60,4 @@ jobs:
           platforms: linux/amd64, linux/arm64
           file: ./java/${{ matrix.tag }}/Dockerfile
           push: true
-          tags: ghcr.io/software-noob/pterodactyl-images:java_${{ matrix.tag }}
+          tags: ghcr.io/sunshroomchan/pterodactyl-images:java_${{ matrix.tag }}
