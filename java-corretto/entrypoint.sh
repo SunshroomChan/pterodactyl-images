@@ -14,8 +14,8 @@ export INTERNAL_IP
 
 # Replace Startup Variables
 # shellcheck disable=SC2086
-MODIFIED_STARTUP=$(eval echo "$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g')")
-echo -e "${YELLOW}[Startup Command]: ${MODIFIED_STARTUP} ${RESET_COLOR}"
+MODIFIED_STARTUP=$(printf '%s\n' "$STARTUP" | sed -e 's/{{/${/g' -e 's/}}/}/g')
+printf '%sSTARTUP /home/container: %s %s\n' "$CYAN" "$MODIFIED_STARTUP" "$RESET_COLOR"
 
 # Run the Server
 # shellcheck disable=SC2086
