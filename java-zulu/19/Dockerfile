@@ -1,7 +1,7 @@
 FROM        azul/zulu-openjdk:19
 
 LABEL       author="Software-noob" maintainer="admin@softwarenoob.com"
-LABEL       org.opencontainers.image.source="https://github.com/Software-Noob/pterodactyl-images"
+LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
 LABEL       org.opencontainers.image.licenses="MIT"
 
 ENV         DEBIAN_FRONTEND noninteractive
@@ -22,4 +22,4 @@ ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
 COPY        ./entrypoint.sh /entrypoint.sh
-CMD         [ "/bin/bash", "/entrypoint.sh" ]
+CMD         [ "/bin/sh", "/entrypoint.sh" ]

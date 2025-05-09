@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 cd /home/container ||exit 1
 
 # Configure colors

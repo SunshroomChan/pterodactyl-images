@@ -1,7 +1,7 @@
 FROM        eclipse-temurin:11-focal
 
-LABEL       author="Softwarenoob" maintainer="admin@softwarenoob.com"
-LABEL       org.opencontainers.image.source="https://github.com/Software-Noob/pterodactyl-images"
+LABEL       author="SunshroomChan" maintainer="viethoangluunguyen1974@gmail.com"
+LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
 LABEL       org.opencontainers.image.licenses="MIT"
 
 RUN         apt-get update -y \
