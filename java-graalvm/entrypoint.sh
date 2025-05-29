@@ -19,4 +19,4 @@ printf '%sSTARTUP /home/container: %s %s\n' "$CYAN" "$MODIFIED_STARTUP" "$RESET_
 
 # Run the Server
 # shellcheck disable=SC2086
-eval ${MODIFIED_STARTUP}
+eval "$MODIFIED_STARTUP"
