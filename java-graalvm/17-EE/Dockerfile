@@ -1,4 +1,4 @@
-FROM        container-registry.oracle.com/graalvm/jdk-ee:ol9-java17-21.3.14
+FROM        container-registry.oracle.com/graalvm/jdk-ee:ol8-java17-22
 
 LABEL       author="SunshroomChan" maintainer="viethoangluunguyen1974@gmail.com"
 LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
