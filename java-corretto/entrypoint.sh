@@ -18,5 +18,5 @@ MODIFIED_STARTUP=$(printf '%s\n' "$STARTUP" | sed -e 's/{{/${/g' -e 's/}}/}/g')
 printf '%sSTARTUP /home/container: %s %s\n' "$CYAN" "$MODIFIED_STARTUP" "$RESET_COLOR"
 
 # Run the Server
-# shellcheck disable=SC2086
+# shellcheck disable=SC20868
 exec ${MODIFIED_STARTUP}
