@@ -1,4 +1,4 @@
-FROM        eclipse-temurin:17-noble
+FROM        adoptium/temurin17:latest
 
 LABEL       author="SunshroomChan" maintainer="viethoangluunguyen1974@gmail.com"
 LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
