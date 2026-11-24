@@ -23,7 +23,8 @@ WORKDIR     /home/container
 
 # Java4Shell (CVE-2026-114938) workaround for this HotSpot build.
 ENV         JAVA_TOOL_OPTIONS="-XX:-UseBASE64Intrinsics"
-RUN         java -version
+# Check JVM startup without relying on JIT compilation under QEMU.
+RUN         java -Xint -version
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/sh", "/entrypoint.sh" ]
