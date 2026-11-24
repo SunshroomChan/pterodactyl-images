@@ -1,4 +1,4 @@
-FROM        amazoncorretto:25@sha256:d4b9047349107b5c5a3c67f89853c48a83d4c365737f7b
+FROM        amazoncorretto:25@sha256:d4b9047349107b5c5a3c67f89853c48a83d4c769d4196a03f675a4c365737f7b
 
 LABEL       author="SunshroomChan" maintainer="viethoangluunguyen1974@gmail.com"
 LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
