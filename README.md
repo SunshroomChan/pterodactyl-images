@@ -18,143 +18,181 @@ Navigate to `Admin Panel -> Nests -> Select your egg`. Add Docker image URL(s) f
 
 | Image                                                                                                  | Supported platforms |
 | ------------------------------------------------------------------------------------------------------ | ------------------- |
-| [Java Amazon Corretto](https://github.com/trenutoo/pterodactyl-images#java-amazon-corretto-amd64arm64) | AMD64, ARM64        |
-| [Java Azul Zulu](https://github.com/trenutoo/pterodactyl-images#java-azul-zulu-amd64arm64)             | AMD64, ARM64        |
-| [Java Dragonwell](https://github.com/trenutoo/pterodactyl-images#java-dragonwell-amd64arm64)           | AMD64, ARM64        |
-| [Java Eclipse Temurin](https://github.com/trenutoo/pterodactyl-images#java-eclipse-temurin-amd64arm64) | AMD64, ARM64        |
-| [Java GraalVM](https://github.com/trenutoo/pterodactyl-images#java-graalvm-amd64arm64)                 | AMD64, ARM64        |
-| [Java Liberica](https://github.com/trenutoo/pterodactyl-images#java-liberica-amd64arm64)               | AMD64, ARM64        |
-| [Java OpenJ9](https://github.com/trenutoo/pterodactyl-images#java-openj9-amd64)                        | AMD64               |
-| [Java Shenandoah](https://github.com/trenutoo/pterodactyl-images#java-shenandoah-amd64arm64)           | AMD64, ARM64        |
+| [Java Amazon Corretto](#java-amazon-corretto-amd64arm64) | AMD64, ARM64        |
+| [Java Azul Zulu](#java-azul-zulu-amd64arm64)             | AMD64, ARM64        |
+| [Java Dragonwell](#java-dragonwell-amd64arm64)           | AMD64, ARM64        |
+| [Java Eclipse Temurin](#java-eclipse-temurin-amd64arm64) | AMD64, ARM64        |
+| [Java GraalVM](#java-graalvm-amd64arm64)                 | AMD64, ARM64        |
+| [Java Liberica](#java-liberica-amd64arm64)               | AMD64, ARM64        |
+| [Java OpenJ9](#java-openj9-amd64arm64)                        | AMD64, ARM64        |
+| [Java Shenandoah](#java-shipilev-experimental-amd64)           | AMD64               |
 | [Node.js](https://github.com/trenutoo/pterodactyl-images#nodejs-amd64arm64)                            | AMD64, ARM64        |
 | [Python](https://github.com/trenutoo/pterodactyl-images#python-amd64arm64)                             | AMD64, ARM64        |
 | [Sourcemod](https://github.com/trenutoo/pterodactyl-images#sourcemod-amd64)                            | AMD64               |
 
+### Java4Shell (CVE-2026-114938)
+
+These supported releases use the November 2026 fix on AMD64. ARM64, standard OpenJDK 8 and 11, and IBM Semeru (OpenJ9) are unaffected by this CVE.
+
+| Distribution | Java tags with the upstream fix |
+| ------------ | ------------------------------ |
+| Eclipse Temurin | 17, 21, 25, 27 |
+| Amazon Corretto | 17, 21, 25, 27 |
+| BellSoft Liberica | 17, 21, 25, 27 |
+| Alibaba Dragonwell | 17, 21, 25 |
+| Azul Zulu | 17, 21, 25 |
+
+The affected legacy HotSpot releases and the affected GraalVM and Shipilev images without a confirmed upstream fix set `JAVA_TOOL_OPTIONS=-XX:-UseBASE64Intrinsics`. If your egg overrides `JAVA_TOOL_OPTIONS`, keep `-XX:-UseBASE64Intrinsics` in its JVM options or select an image with the upstream fix.
+
+Pull the rebuilt image and recreate the container to apply the update. If the server uses a JVM bundled with the application, update that JVM separately. When updating pinned base images, verify the Java patch level on AMD64 and the supported platforms in the upstream manifest.
+
+See the [Eclipse Temurin advisory](https://adoptium.net/en-GB/news/2026/11/temurin-november-2026-cspu-java4shell) and [Oracle advisory](https://www.oracle.com/security-alerts/cspunov2026.html).
+
 ### Java Amazon Corretto [AMD64/ARM64]
 
-- [Java 8 Amazon Corretto](https://github.com/trenutoo/pterodactyl-images/tree/main/java-corretto/8)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_8_corretto`
-- [Java 11 Amazon Corretto](https://github.com/trenutoo/pterodactyl-images/tree/main/java-corretto/11)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_11_corretto`
-- [Java 17 Amazon Corretto](https://github.com/trenutoo/pterodactyl-images/tree/main/java-corretto/17)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_17_corretto`
-- [Java 19 Amazon Corretto](https://github.com/trenutoo/pterodactyl-images/tree/main/java-corretto/19)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_19_corretto`
-- [Java 20 Amazon Corretto](https://github.com/trenutoo/pterodactyl-images/tree/main/java-corretto/20)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_20_corretto`
-- [Java 21 Amazon Corretto](https://github.com/trenutoo/pterodactyl-images/tree/main/java-corretto/21)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_21_corretto`
+- [Java 8 Amazon Corretto](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-corretto/8)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_8_corretto`
+- [Java 11 Amazon Corretto](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-corretto/11)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_11_corretto`
+- [Java 17 Amazon Corretto](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-corretto/17)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_17_corretto`
+- [Java 19 Amazon Corretto](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-corretto/19)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_19_corretto`
+- [Java 20 Amazon Corretto](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-corretto/20)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_20_corretto`
+- [Java 21 Amazon Corretto](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-corretto/21)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_21_corretto`
+- [Java 25 Amazon Corretto](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-corretto/25)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_25_corretto`
+- [Java 27 Amazon Corretto](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-corretto/27)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_27_corretto`
 
 ### Java Azul Zulu [AMD64/ARM64]
 
-- [Java 8 Zulu](https://github.com/trenutoo/pterodactyl-images/tree/main/java-zulu/8)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_8_zulu`
-- [Java 11 Zulu](https://github.com/trenutoo/pterodactyl-images/tree/main/java-zulu/11)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_11_zulu`
-- [Java 16 Zulu](https://github.com/trenutoo/pterodactyl-images/tree/main/java-zulu/16)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_16_zulu`
-- [Java 17 Zulu](https://github.com/trenutoo/pterodactyl-images/tree/main/java-zulu/17)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_17_zulu`
-- [Java 18 Zulu](https://github.com/trenutoo/pterodactyl-images/tree/main/java-zulu/18)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_18_zulu`
-- [Java 19 Zulu](https://github.com/trenutoo/pterodactyl-images/tree/main/java-zulu/19)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_19_zulu`
-- [Java 20 Zulu](https://github.com/trenutoo/pterodactyl-images/tree/main/java-zulu/20)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_20_zulu`
-- [Java 21 Zulu](https://github.com/trenutoo/pterodactyl-images/tree/main/java-zulu/21)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_21_zulu`
-- [Java 22 Zulu](https://github.com/trenutoo/pterodactyl-images/tree/main/java-zulu/22)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_22_zulu`
+- [Java 8 Zulu](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-zulu/8)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_8_zulu`
+- [Java 11 Zulu](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-zulu/11)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_11_zulu`
+- [Java 16 Zulu](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-zulu/16)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_16_zulu` (AMD64 only)
+- [Java 17 Zulu](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-zulu/17)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_17_zulu`
+- [Java 18 Zulu](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-zulu/18)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_18_zulu`
+- [Java 19 Zulu](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-zulu/19)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_19_zulu`
+- [Java 20 Zulu](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-zulu/20)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_20_zulu`
+- [Java 21 Zulu](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-zulu/21)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_21_zulu`
+- [Java 22 Zulu](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-zulu/22)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_22_zulu`
+- [Java 25 Zulu](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-zulu/25)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_25_zulu`
 
 ### Java Dragonwell [AMD64/ARM64]
 
-- [Java 8 Dragonwell](https://github.com/trenutoo/pterodactyl-images/tree/main/java-dragonwell/8)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_8_dragonwell`
-- [Java 11 Dragonwell](https://github.com/trenutoo/pterodactyl-images/tree/main/java-dragonwell/11)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_11_dragonwell`
-- [Java 17 Dragonwell](https://github.com/trenutoo/pterodactyl-images/tree/main/java-dragonwell/17)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_17_dragonwell`
-- [Java 21 Dragonwell](https://github.com/trenutoo/pterodactyl-images/tree/main/java-dragonwell/21)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_21_dragonwell`
+- [Java 8 Dragonwell](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-dragonwell/8)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_8_dragonwell`
+- [Java 11 Dragonwell](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-dragonwell/11)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_11_dragonwell`
+- [Java 17 Dragonwell](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-dragonwell/17)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_17_dragonwell`
+- [Java 21 Dragonwell](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-dragonwell/21)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_21_dragonwell`
+- [Java 25 Dragonwell](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-dragonwell/25)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_25_dragonwell`
 
 ### Java Eclipse Temurin [AMD64/ARM64]
 
-- [Java 8](https://github.com/trenutoo/pterodactyl-images/tree/main/java/8)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_8`
-- [Java 11](https://github.com/trenutoo/pterodactyl-images/tree/main/java/11)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_11`
-- [Java 16](https://github.com/trenutoo/pterodactyl-images/tree/main/java/16)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_16`
-- [Java 17](https://github.com/trenutoo/pterodactyl-images/tree/main/java/17)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_17`
-- [Java 18](https://github.com/trenutoo/pterodactyl-images/tree/main/java/18)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_18`
-- [Java 19](https://github.com/trenutoo/pterodactyl-images/tree/main/java/19)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_19`
-- [Java 20](https://github.com/trenutoo/pterodactyl-images/tree/main/java/20)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_20`
-- [Java 21](https://github.com/trenutoo/pterodactyl-images/tree/main/java/21)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_21`
-- [Java 22](https://github.com/trenutoo/pterodactyl-images/tree/main/java/22)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_22`
+- [Java 8](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/8)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_8`
+- [Java 11](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/11)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_11`
+- [Java 16](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/16)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_16`
+- [Java 17](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/17)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_17`
+- [Java 18](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/18)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_18`
+- [Java 19](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/19)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_19`
+- [Java 20](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/20)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_20`
+- [Java 21](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/21)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_21`
+- [Java 22](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/22)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_22`
+- [Java 25](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/25)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_25`
+- [Java 27](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java/27)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_27`
 
 ### Java GraalVM [AMD64/ARM64]
 
 **NOTE**: Java 8 is AMD64 only due to lack of support from upstream
 
-- [Java 8 GraalVM-CE](https://github.com/trenutoo/pterodactyl-images/tree/main/java-graalvm/8)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_8_graalvm`
-- [Java 11 GraalVM JDK](https://github.com/trenutoo/pterodactyl-images/tree/main/java-graalvm/11)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_11_graalvm`
-- [Java 17 GraalVM JDK](https://github.com/trenutoo/pterodactyl-images/tree/main/java-graalvm/17)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_17_graalvm`
-- [Java 21 GraalVM JDK](https://github.com/trenutoo/pterodactyl-images/tree/main/java-graalvm/21)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_21_graalvm`
-- [Java 22 GraalVM JDK](https://github.com/trenutoo/pterodactyl-images/tree/main/java-graalvm/22)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_22_graalvm`
+- [Java 8 GraalVM-CE](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-graalvm/8)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_8_graalvm`
+- [Java 11 GraalVM JDK](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-graalvm/11)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_11_graalvm`
+- [Java 17 GraalVM JDK](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-graalvm/17)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_17_graalvm`
+- [Java 21 GraalVM JDK](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-graalvm/21)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_21_graalvm`
+- [Java 22 GraalVM JDK](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-graalvm/22)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_22_graalvm`
 
 ### Java Liberica [AMD64/ARM64]
 
-- [Java 8 Liberica](https://github.com/trenutoo/pterodactyl-images/tree/main/java-liberica/8)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_8_liberica`
-- [Java 11 Liberica](https://github.com/trenutoo/pterodactyl-images/tree/main/java-liberica/11)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_11_liberica`
-- [Java 17 Liberica](https://github.com/trenutoo/pterodactyl-images/tree/main/java-liberica/17)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_17_liberica`
-- [Java 21 Liberica](https://github.com/trenutoo/pterodactyl-images/tree/main/java-liberica/21)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_21_liberica`
-- [Java 22 Liberica](https://github.com/trenutoo/pterodactyl-images/tree/main/java-liberica/22)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_22_liberica`
+- [Java 8 Liberica](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-liberica/8)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_8_liberica`
+- [Java 11 Liberica](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-liberica/11)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_11_liberica`
+- [Java 17 Liberica](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-liberica/17)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_17_liberica`
+- [Java 21 Liberica](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-liberica/21)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_21_liberica`
+- [Java 22 Liberica](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-liberica/22)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_22_liberica`
+- [Java 25 Liberica](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-liberica/25)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_25_liberica`
+- [Java 27 Liberica](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-liberica/27)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_27_liberica`
 
 ### Java OpenJ9 [AMD64/ARM64]
 
-- [Java 8 OpenJ9](https://github.com/trenutoo/pterodactyl-images/tree/main/java-openj9/8)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_8_openj9`
-- [Java 11 OpenJ9](https://github.com/trenutoo/pterodactyl-images/tree/main/java-openj9/11)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_11_openj9`
-- [Java 16 OpenJ9](https://github.com/trenutoo/pterodactyl-images/tree/main/java-openj9/16)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_16_openj9`
-- [Java 17 OpenJ9](https://github.com/trenutoo/pterodactyl-images/tree/main/java-openj9/17)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_17_openj9`
-- [Java 18 OpenJ9](https://github.com/trenutoo/pterodactyl-images/tree/main/java-openj9/18)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_18_openj9`
-- [Java 20 OpenJ9](https://github.com/trenutoo/pterodactyl-images/tree/main/java-openj9/20)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_20_openj9`
-- [Java 21 OpenJ9](https://github.com/trenutoo/pterodactyl-images/tree/main/java-openj9/21)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_21_openj9`
+- [Java 8 OpenJ9](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-openj9/8)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_8_openj9`
+- [Java 11 OpenJ9](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-openj9/11)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_11_openj9`
+- [Java 16 OpenJ9](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-openj9/16)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_16_openj9` (AMD64 only)
+- [Java 17 OpenJ9](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-openj9/17)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_17_openj9`
+- [Java 18 OpenJ9](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-openj9/18)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_18_openj9`
+- [Java 20 OpenJ9](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-openj9/20)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_20_openj9`
+- [Java 21 OpenJ9](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-openj9/21)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_21_openj9`
+- [Java 25 OpenJ9](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-openj9/25)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_25_openj9`
+- [Java 27 OpenJ9](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-openj9/27)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_27_openj9`
 
-### Java Shipilev Experimental [AMD64/ARM64]
+### Java Shipilev Experimental [AMD64]
 
 These are [shipilev experimental builds.](https://builds.shipilev.net/) If you're looking for Shenandoah GC, it is also by default shipped with at least Azul, Corretto and Temurin images starting with Java 11.
 
-- [Java 8 Shenandoah](https://github.com/trenutoo/pterodactyl-images/tree/main/java-shenandoah/8)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_8_shenandoah`
-- [Java 11 Shenandoah](https://github.com/trenutoo/pterodactyl-images/tree/main/java-shenandoah/11)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_11_shenandoah`
-- [Java 17 Shenandoah](https://github.com/trenutoo/pterodactyl-images/tree/main/java-shenandoah/17)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_17_shenandoah`
-- [Java 21 Shenandoah](https://github.com/trenutoo/pterodactyl-images/tree/main/java-shenandoah/21)
-  - `ghcr.io/trenutoo/pterodactyl-images:java_21_shenandoah`
+- [Java 8 Shenandoah](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-shenandoah/8)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_8_shenandoah`
+- [Java 11 Shenandoah](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-shenandoah/11)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_11_shenandoah`
+- [Java 17 Shenandoah](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-shenandoah/17)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_17_shenandoah`
+- [Java 21 Shenandoah](https://github.com/SunshroomChan/pterodactyl-images/tree/main/java-shenandoah/21)
+  - `ghcr.io/sunshroomchan/pterodactyl-images:java_21_shenandoah`
 
 ### Node.js [AMD64/ARM64]
 

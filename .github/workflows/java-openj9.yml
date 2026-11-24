@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - java-openj9/**
+      - .github/workflows/java-openj9.yml
 
 permissions:
   actions: read
@@ -32,6 +33,8 @@ jobs:
           - 18
           - 20
           - 21
+          - 25
+          - 27
     steps:
       - name: Git checkout for Github repository workspace
         uses: actions/checkout@v4
@@ -52,7 +55,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./java-openj9
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ matrix.tag == 16 && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
           file: ./java-openj9/${{ matrix.tag }}/Dockerfile
+          pull: true
           push: true
           tags: ghcr.io/sunshroomchan/pterodactyl-images:java_${{ matrix.tag }}_openj9

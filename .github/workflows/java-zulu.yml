@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - java-zulu/**
+      - .github/workflows/java-zulu.yml
 
 permissions:
   actions: read
@@ -35,6 +36,7 @@ jobs:
           - 20
           - 21
           - 22
+          - 25
     steps:
       - name: Git checkout for Github repository workspace
         uses: actions/checkout@v4
@@ -58,7 +60,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./java-zulu
-          platforms: linux/amd64, linux/arm64
+          platforms: ${{ matrix.tag == 16 && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
           file: ./java-zulu/${{ matrix.tag }}/Dockerfile
+          pull: true
           push: true
           tags: ghcr.io/sunshroomchan/pterodactyl-images:java_${{ matrix.tag }}_zulu

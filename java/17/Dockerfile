@@ -1,4 +1,5 @@
-FROM        eclipse-temurin:17
+# The multi-arch index includes Temurin 17.0.21.1+2 on amd64. ARM64 is unaffected by CVE-2026-114938.
+FROM        eclipse-temurin:17@sha256:7a0b2bc7e1372bb05ee361fb79e8a9e822df47343b8716253b3bbaa75060653e
 
 LABEL       author="SunshroomChan" maintainer="viethoangluunguyen1974@gmail.com"
 LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
@@ -18,6 +19,8 @@ ENV         LANGUAGE=en_US.UTF-8
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
+
+RUN         java -version
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/sh", "/entrypoint.sh" ]

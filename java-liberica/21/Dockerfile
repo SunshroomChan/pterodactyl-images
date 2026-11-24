@@ -1,4 +1,4 @@
-FROM        bellsoft/liberica-openjdk-debian:21
+FROM        bellsoft/liberica-openjdk-debian:21.0.13.1
 
 LABEL       author="SunshroomChan" maintainer="viethoangluunguyen1974@gmail.com"
 LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
@@ -18,6 +18,8 @@ ENV         LANGUAGE=en_US.UTF-8
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
+
+RUN         java -version
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/sh", "/entrypoint.sh" ]

@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - java-dragonwell/**
+      - .github/workflows/java-dragonwell.yml
 
 permissions:
   actions: read
@@ -29,6 +30,7 @@ jobs:
           - 11
           - 17
           - 21
+          - 25
     steps:
       - name: Git checkout for Github repository workspace
         uses: actions/checkout@v4
@@ -51,5 +53,6 @@ jobs:
           context: ./java-dragonwell
           platforms: linux/amd64, linux/arm64
           file: ./java-dragonwell/${{ matrix.tag }}/Dockerfile
+          pull: true
           push: true
           tags: ghcr.io/sunshroomchan/pterodactyl-images:java_${{ matrix.tag }}_dragonwell

@@ -21,5 +21,9 @@ USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
+# Java4Shell (CVE-2026-114938) workaround for this HotSpot build.
+ENV         JAVA_TOOL_OPTIONS="-XX:-UseBASE64Intrinsics"
+RUN         java -version
+
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/sh", "/entrypoint.sh" ]

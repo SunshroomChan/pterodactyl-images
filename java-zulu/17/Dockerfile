@@ -1,4 +1,4 @@
-FROM        azul/zulu-openjdk:17-latest
+FROM        azul/zulu-openjdk:17.0.21.1
 
 LABEL       author="Software-noob" maintainer="admin@softwarenoob.com"
 LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
@@ -20,6 +20,8 @@ ENV         LANGUAGE=en_US.UTF-8
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
+
+RUN         java -version
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/sh", "/entrypoint.sh" ]

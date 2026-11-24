@@ -1,4 +1,4 @@
-FROM        alibabadragonwell/dragonwell:21-ubuntu
+FROM        alibabadragonwell/dragonwell:21-ubuntu@sha256:2b38880787fc4ae3006841b2e5b5fc005bad227637fdfcbea4ee8c0c3d8e90d0
 
 LABEL       author="SunshroomChan" maintainer="viethoangluunguyen1974@gmail.com"
 LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
@@ -18,6 +18,8 @@ ENV         LANGUAGE=en_US.UTF-8
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
+
+RUN         java -version
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/sh", "/entrypoint.sh" ]

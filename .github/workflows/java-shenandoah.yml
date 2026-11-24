@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - java-shenandoah/**
+      - .github/workflows/java-shenandoah.yml
 
 permissions:
   actions: read
@@ -53,7 +54,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./java-shenandoah
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           file: ./java-shenandoah/${{ matrix.tag }}/Dockerfile
+          pull: true
           push: true
           tags: ghcr.io/sunshroomchan/pterodactyl-images:java_${{ matrix.tag }}_shenandoah

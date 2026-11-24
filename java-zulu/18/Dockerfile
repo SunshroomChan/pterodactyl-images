@@ -1,4 +1,4 @@
-FROM        azul/zulu-openjdk:18
+FROM        azul/zulu-openjdk:18-latest
 
 LABEL       author="Software-noob" maintainer="admin@softwarenoob.com"
 LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
@@ -20,6 +20,10 @@ ENV         LANGUAGE=en_US.UTF-8
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
+
+# Java4Shell (CVE-2026-114938) workaround for this HotSpot build.
+ENV         JAVA_TOOL_OPTIONS="-XX:-UseBASE64Intrinsics"
+RUN         java -version
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/sh", "/entrypoint.sh" ]
