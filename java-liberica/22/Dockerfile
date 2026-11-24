@@ -4,7 +4,9 @@ LABEL       author="SunshroomChan" maintainer="viethoangluunguyen1974@gmail.com"
 LABEL       org.opencontainers.image.source="https://github.com/SunshroomChan/pterodactyl-images"
 LABEL       org.opencontainers.image.licenses="MIT"
 
-RUN         apt-get update -y \
+# Debian 11 moved its package repositories to the archive after LTS ended.
+RUN         sed -i 's|http://deb.debian.org/|https://archive.debian.org/|g' /etc/apt/sources.list \
+            && apt-get update -y \
             && apt-get install -y --no-install-recommends curl ca-certificates openssl git tar sqlite3 fontconfig libfreetype6 libstdc++6 lsof build-essential tzdata iproute2 locales \
             && apt-get clean \
             && rm -rf /var/lib/apt/lists/* \
